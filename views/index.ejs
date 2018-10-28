@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <%- include templates/head.ejs %>
+  <body>
+    <h1><%= title %></h1>
+    <div class="well">
+      <form id="discoverForm" action="/discover" method="POST">
+        <input type="text" name="host">
+        <input type="submit" id="discoverButton" value="Discover">
+      </form>
+      <br>
+      <ul id="endpoints" class="list-group">
+        
+      </ul>
+    </div>
+  </body>
+  <script type="text/javascript">
+    $("#discoverForm").submit(function(ev) {
+      $("#endpoints").empty();
+      ev.preventDefault();
+      var host = this.host.value;
+      $(this.host).prop("disabled",true);
+      $("#discoverButton").val("...");
+      $("#discoverButton").prop("disabled",true);
+      var that = this;
+      $.post("/discover",{host:host}).done(function(res) {
+        $("#discoverButton").val("Discover");
+        $("#discoverButton").prop("disabled",false);    
+        $(that.host).prop("disabled",false);            
+        for(r in res) {
+          $("#endpoints").append("<a href='/endpoint?host="+host+"&name="+res[r].path+"' class='list-group-item list-group-item-action'>Path: "+res[r].path+" Title: "+res[r].desc+" </a>");
+        }
+      });
+      return false;
+    })
+  </script>
+</html>

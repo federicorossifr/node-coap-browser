@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <%- include templates/head.ejs %>
+  <body>
+    <h1>Endpoint: <%= endpoint %></h1>
+    <a class="btn btn-primary" href="/">BACK</a>
+    <br><br>
+    <div class="well">
+      <form id="requestForm">
+        <input type="hidden" name="host" value="<%= host %>">
+        <input type="hidden" name="endpoint" value="<%= endpoint %>">
+        <input type="text" placeholder="query" name="query">
+        <input type="text" placeholder="payload" name="payload">
+        <select name="method">
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="DELETE">DELETE</option>
+        </select>
+        <input type="submit" value="Send">
+      </form>
+    </div>
+    <div class="well" id="res">
+        
+    </div>
+  </body>
+  <script type="text/javascript">
+    $("#requestForm").submit(function(ev) {
+      ev.preventDefault();
+      $("#res").empty();
+      var that = this;
+      var data = {
+        host: that.host.value,
+        query: that.query.value,
+        payload: that.payload.value,
+        method: that.method.value,
+        endpoint: that.endpoint.value
+      }
+      $.post("/request",data).done(function(res) {
+        $("#res").append("<div><strong>Status:</strong>"+res.status+"</div>");
+        $("#res").append("<div><strong>Data:</strong>"+JSON.stringify(res.data)+"</div>");
+      });
+      return false;
+    })
+  </script>
+</html>
