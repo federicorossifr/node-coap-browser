@@ -37,6 +37,10 @@
         endpoint: that.endpoint.value
       }
       $.post("/request",data).done(function(res) {
+        if(res['errno']) {
+          alert(res['errno']);
+          return;
+        }
         $("#res").append("<div><strong>Status:</strong>"+res.status+"</div>");
         $("#res").append("<div><strong>Data:</strong>"+JSON.stringify(res.data)+"</div>");
       });

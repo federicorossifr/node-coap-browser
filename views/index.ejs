@@ -27,6 +27,10 @@
         $("#discoverButton").val("Discover");
         $("#discoverButton").prop("disabled",false);    
         $(that.host).prop("disabled",false);            
+        if(res['errno']) {
+          alert(res['errno']); 
+          return;
+        };
         for(r in res) {
           $("#endpoints").append("<a href='/endpoint?host="+host+"&name="+res[r].path+"' class='list-group-item list-group-item-action'>Path: "+res[r].path+" Title: "+res[r].desc+" </a>");
         }
