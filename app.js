@@ -1,6 +1,7 @@
 var express = require('express');
 var coapApi = require("coap-api");
 var path = require('path');
+var chalk = require('chalk');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -8,7 +9,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var app = express();
 var io = require('socket.io').listen(app.listen(8080,'0.0.0.0',function(){
-	console.log("Server running at http://localhost:8080");
+	console.log(chalk.green.bold("Server running at: http://localhost:8080"));
 }));
 
 // view engine setup

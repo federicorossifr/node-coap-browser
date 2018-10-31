@@ -32,7 +32,7 @@
                   <option value="observe">Observe</option>
                 </select>
               </div>
-              <input class="btn btn-success" type="submit" value="Send">
+              <input id="sendBtn" class="btn btn-success" type="submit" value="Send">
             </form>
           </div>
         </div>
@@ -54,6 +54,8 @@
             alert(res['errno']);
             return;
           }
+          $("#sendBtn").prop("disabled",false);
+          $("#sendBtn").val("Send")           
           $("#res").append("<div><strong>Status:</strong> "+res.status+"</div>");
           $("#res").append("<div><strong>Data:</strong> "+res.data+"</div>");
         });      
@@ -71,11 +73,19 @@
         method: that.method.value,
         endpoint: that.endpoint.value
       }
+      $("#sendBtn").prop("disabled",true);
+      $("#sendBtn").val("...");
       if(that.method.value != 'observe') {
         doStdOp(data);
       } else {
+        var first = true;
         socket.emit("observe",data);
         socket.on('obData',function(data) {
+          if(first) {
+            first = false;
+            $("#sendBtn").prop("disabled",false);
+            $("#sendBtn").val("Send") 
+          }
           $("#res").append("<div>"+data+"</div>");
         })
       }
