@@ -2,10 +2,10 @@
 <html>
   <%- include templates/head.ejs %>
   <body>
-    <h1><%= title %></h1>
+    <h1>CoAP Browser</h1>
     <div class="well">
       <form id="discoverForm" action="/discover" method="POST">
-        <input type="text" name="host">
+        <input type="text" name="host" value="<%= host %>">
         <input type="submit" id="discoverButton" value="Discover">
       </form>
       <br>
@@ -32,7 +32,7 @@
           return;
         };
         for(r in res) {
-          $("#endpoints").append("<a href='/endpoint?host="+host+"&name="+res[r].path+"' class='list-group-item list-group-item-action'>Path: "+res[r].path+" Title: "+res[r].desc+" </a>");
+          $("#endpoints").append("<a href='/endpoint?host="+host+"&name="+res[r].path+"' class='list-group-item list-group-item-action'>Path: <strong>"+res[r].path+"</strong> Title: <em>"+res[r].desc+"</em> </a>");
         }
       });
       return false;

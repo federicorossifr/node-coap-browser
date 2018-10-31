@@ -30,7 +30,6 @@ io.on("connection",function(socket) {
     socket.on("observe",function(data) {
       var ts = socket;
       coapApi.observe(data.host,data.endpoint,data.query,d => {
-        console.log(d);
         ts.emit('obData',d.payload.toString('utf8'));
       })
     });

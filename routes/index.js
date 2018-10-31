@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var coapApi = require("coap-api");
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Welcome Home' });
+  var host = (req.query.host)?req.query.host:"";
+  res.render('index', { title: 'Welcome Home', host:host });
 });
 
 router.post('/discover',function(req,res,next){
