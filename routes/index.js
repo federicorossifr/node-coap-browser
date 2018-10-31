@@ -20,7 +20,6 @@ router.get('/endpoint',function(req,res,next) {
 router.post('/request',function(req,res,next) {
 	var method = req.body.method;
 	var fun = coapApi[method];
-	console.log(req.body);
 	fun(req.body.host,req.body.endpoint,req.body.query,req.body.payload)
 	.then(r => {res.json(r)})
 	.catch(err => {res.json(err)});

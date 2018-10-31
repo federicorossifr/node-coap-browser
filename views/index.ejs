@@ -4,9 +4,13 @@
   <body>
     <h1>CoAP Browser</h1>
     <div class="well">
-      <form id="discoverForm" action="/discover" method="POST">
-        <input type="text" name="host" value="<%= host %>">
-        <input type="submit" id="discoverButton" value="Discover">
+      <form class="form-inline" id="discoverForm" action="/discover" method="POST">
+        <div class="input-group">
+          <input class="form-control" type="text" name="host" value="<%= host %>">
+          <div class="input-group-append">
+            <button class="btn btn-success" type="submit" id="discoverButton">Discover</button>
+          </div>
+        </div>
       </form>
       <br>
       <ul id="endpoints" class="list-group">
@@ -20,11 +24,11 @@
       ev.preventDefault();
       var host = this.host.value;
       $(this.host).prop("disabled",true);
-      $("#discoverButton").val("...");
+      $("#discoverButton").text("...");
       $("#discoverButton").prop("disabled",true);
       var that = this;
       $.post("/discover",{host:host}).done(function(res) {
-        $("#discoverButton").val("Discover");
+        $("#discoverButton").text("Discover");
         $("#discoverButton").prop("disabled",false);    
         $(that.host).prop("disabled",false);            
         if(res['errno']) {
@@ -33,7 +37,7 @@
         };
         for(r in res) {
           $("#endpoints").append("<a href='/endpoint?host="+host+"&name="+res[r].path+"' class='list-group-item list-group-item-action'>Path: <strong>"+res[r].path+"</strong> Title: <em>"+res[r].desc+"</em> </a>");
-        }
+        } 
       });
       return false;
     })
