@@ -16,6 +16,7 @@
           <option value="POST">POST</option>
           <option value="PUT">PUT</option>
           <option value="DELETE">DELETE</option>
+          <option value="observe">Observe</option>
         </select>
         <input type="submit" value="Send">
       </form>
@@ -25,6 +26,19 @@
     </div>
   </body>
   <script type="text/javascript">
+    var socket = io.connect();
+    function doStdOp(data) {
+        $.post("/request",data).done(function(res) {
+          if(res['errno']) {
+            alert(res['errno']);
+            return;
+          }
+          $("#res").append("<div><strong>Status:</strong>"+res.status+"</div>");
+          $("#res").append("<div><strong>Data:</strong>"+JSON.stringify(res.data)+"</div>");
+        });      
+    } 
+
+
     $("#requestForm").submit(function(ev) {
       ev.preventDefault();
       $("#res").empty();
@@ -36,15 +50,16 @@
         method: that.method.value,
         endpoint: that.endpoint.value
       }
-      $.post("/request",data).done(function(res) {
-        if(res['errno']) {
-          alert(res['errno']);
-          return;
-        }
-        $("#res").append("<div><strong>Status:</strong>"+res.status+"</div>");
-        $("#res").append("<div><strong>Data:</strong>"+JSON.stringify(res.data)+"</div>");
-      });
+      if(that.method.value != 'observe') {
+        doStdOp(data);
+      } else {
+        socket.emit("observe",data);
+        socket.on('obData',function(data) {
+          $("#res").append("<div>"+data+"</div>");
+        })
+      }
       return false;
+
     })
   </script>
 </html>

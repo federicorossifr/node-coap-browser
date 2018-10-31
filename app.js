@@ -1,4 +1,5 @@
 var express = require('express');
+var coapApi = require("coap-api");
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,7 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var app = express();
 var io = require('socket.io').listen(app.listen(8080,'0.0.0.0',function(){
-	console.log("Server running at 8080");
+	console.log("Server running at http://localhost:8080");
 }));
 
 // view engine setup
@@ -26,12 +27,19 @@ io.on("connection",function(socket) {
   	socket.on("disconnect",function() {
   		console.log("An user disconnected, now online: "+ (--io.clientCount));
   	})
+    socket.on("observe",function(data) {
+      var ts = socket;
+      coapApi.observer(data.host,data.endpoint,data.query,d => {
+        console.log(d);
+        ts.emit('obData',d.payload.toString('utf8'));
+      })
+    });
  });
 
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
