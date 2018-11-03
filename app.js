@@ -8,8 +8,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var app = express();
-var io = require('socket.io').listen(app.listen(8080,'0.0.0.0',function(){
-	console.log(chalk.green.bold("Server running at: http://localhost:8080"));
+const port = 80;
+var io = require('socket.io').listen(app.listen(port,'0.0.0.0',function(){
+	console.log(chalk.green.bold("Server running at: http://localhost:"+port));
 }));
 
 // view engine setup
