@@ -8,7 +8,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var app = express();
-const port = 80;
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8080;
+}
 var io = require('socket.io').listen(app.listen(port,'0.0.0.0',function(){
 	console.log(chalk.green.bold("Server running at: http://localhost:"+port));
 }));
