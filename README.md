@@ -9,5 +9,5 @@ Install NodeJS
 # Instructions
 <ul>
   <li>Clone the repository</li>
-  <li> <kbd>./install.sh</kbd> </li>
+  <li> <kbd>npm install</kbd> </li>
 </ul>
