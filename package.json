@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "postinstall": "npm run-script build",
-    "build": "./node_modules/bower/bin/bower install",
+    "build": "./node_modules/bower/bin/bower --allow-root install",
     "postbuild": "./node_modules/grunt-cli/bin/grunt wiredep"
   },
   "dependencies": {
