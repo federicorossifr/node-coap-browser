@@ -12,7 +12,7 @@
     "body-parser": "^1.18.3",
     "bower": "^1.8.4",
     "chalk": "^2.4.1",
-    "coap-api": "^1.1.1",
+    "coap-api": "~1.1.9",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
