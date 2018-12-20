@@ -35,6 +35,7 @@
           alert(res['errno']); 
           return;
         };
+        console.log(res);
         for(r in res) {
           $("#endpoints").append("<a href='/endpoint?host="+host+"&name="+res[r].path+"' class='list-group-item list-group-item-action'>Path: <strong>"+res[r].path+"</strong> Title: <em>"+res[r].desc+"</em> </a>");
         } 
