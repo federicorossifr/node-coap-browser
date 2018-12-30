@@ -12,8 +12,8 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8080;
 }
-var io = require('socket.io').listen(app.listen(port,'::',function(){
-	console.log(chalk.green.bold("Server running at: http://localhost:"+port));
+var io = require('socket.io').listen(app.listen(port,'::1',function(){
+	console.log(chalk.green.bold("Server running at: http://?:"+port));
 }));
 
 // view engine setup
