@@ -12,7 +12,7 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8080;
 }
-var io = require('socket.io').listen(app.listen(port,'AAAA:9400:1000:7::DEAD',function(){
+var io = require('socket.io').listen(app.listen(port,'0.0.0.0',function(){
 	console.log(chalk.green.bold("Server running at: http://?:"+port));
 }));
 
