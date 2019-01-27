@@ -13,4 +13,4 @@ Install NodeJS
 </ul>
 
 # Docker image
-Docker image is available at: {federicorossir/coap-browser}[https://cloud.docker.com/u/federicorossir/repository/docker/federicorossir/coap-browser]
+Docker image is available at: [federicorossir/coap-browser](https://cloud.docker.com/u/federicorossir/repository/docker/federicorossir/coap-browser)
