@@ -3,6 +3,8 @@ Node Coap Browser is a web application that lets you discover resources
 over a CoAP-enabled host.<br> In addition you can issue GET,POST,PUT,DELETE
 on the discovered resources and get relative response.
 
+It is based on the [coap-api](https://www.npmjs.com/package/coap-api) package (source available [here](https://github.com/federicorossifr/node-coap-api) on Github)
+
 # Local installation
 Firstly, clone the repository
 ```ssh
