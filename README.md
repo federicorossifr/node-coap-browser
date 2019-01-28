@@ -18,6 +18,8 @@ npm start
 ```
 
 # Docker image
+[![](https://images.microbadger.com/badges/version/federicorossir/coap-browser.svg)](https://microbadger.com/images/federicorossir/coap-browser "Get your own version badge on microbadger.com")
+
 If you do not have Node, or for any reason you prefer a Docker deployment, you can build the Docker image directly from
 project root:
 ```ssh
