@@ -40,3 +40,7 @@ To run it:
 docker pull federicorossir/coap-browser
 docker run -d -p 8080:8080 federicorossir/coap-browser
 ```
+
+
+# Hands-on examples
+For an in-depth example of interoperability between this software and others CoAP stacks (including IPv6 versions) look at https://github.com/federicorossifr/coap-publish-subscribe
